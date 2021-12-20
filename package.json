@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "express": "^4.17.2",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.15",
+    "underscore": "^1.13.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "nodejs_mongodb_api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "Or",
+  "license": "ISC",
+  "description": ""
+}
