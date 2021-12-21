@@ -6,7 +6,7 @@
     "underscore": "^1.13.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "name": "nodejs_mongodb_api",
   "version": "1.0.0",
