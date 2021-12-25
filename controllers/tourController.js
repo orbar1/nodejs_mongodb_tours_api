@@ -1,23 +1,22 @@
 // import required modules
 const Tour = require('./../models/tourModel');
 
-
-
 // Get All Tours
 exports.getTours = async (req, res) => {
     try {
-        const allTours = await Tour.find();
+        const tours = await Tour.find();
 
         res.status(200).json({
+            length: tours.length,
             status: 'success',
             data: {
-                tours: allTours
+                tours
             }
         });
     } catch (error) {
-        res.status(200).json({
+        res.status(404).json({
             status: 'fail',
-            message:"An issue occured."
+            message:error
         });
     }
     
@@ -37,20 +36,20 @@ exports.getTour = async (req, res) => {
     } catch (error) {
         res.status(200).json({
             status: 'fail',
-            message:"An issue occured."
+            message:error
         });
     }
 }
 
 // Create A Tour
 exports.createTour = async (req, res) => {
-    const newTour = await Tour.create(req.body);
+    const tour = await Tour.create(req.body);
 
     try {
         res.status(201).json({
             status:"success",
             data:{
-                tour: newTour
+                tour
             }
         });
 
@@ -87,9 +86,22 @@ exports.updateTour = async (req, res) => {
 
 
 // Delete A Tour
-exports.deleteTour = (req, res) => {
-    res.status(200).json({
-        status: null
-    })
+exports.deleteTour = async (req, res) => {
+    try {
+       await Tour.findByIdAndDelete(req.params.id); 
+
+       res.status(204).json({
+            status: "success",
+            message:"Tour deleted"
+       });
+    } catch (error) {
+        res.status(400).json({
+            status:"failed",
+            message: "Invalid"
+        });
+    }
+    
+
+ 
 }
 
